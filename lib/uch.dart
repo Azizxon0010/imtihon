@@ -55,8 +55,8 @@ class _SuccessScreenState extends State<SuccessScreen> {
   }
 
   Future<void> fetchCurrencies() async {
-    final response =
-        await http.get(Uri.parse('https://cbu.uz/uz/arkhiv-kursov-valyut/json/'));
+    final response = await http
+        .get(Uri.parse('https://cbu.uz/uz/arkhiv-kursov-valyut/json/'));
     if (response.statusCode == 200) {
       setState(() {
         currencies = json.decode(response.body);
@@ -100,7 +100,8 @@ class _SuccessScreenState extends State<SuccessScreen> {
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      double amount = double.tryParse(amountController.text) ?? 0;
+                      double amount =
+                          double.tryParse(amountController.text) ?? 0;
                       if (amount > 0) {
                         setState(() {
                           result = isConvertingToSum
@@ -128,7 +129,8 @@ class _SuccessScreenState extends State<SuccessScreen> {
                             isConvertingToSum = !isConvertingToSum;
                           });
                         },
-                        child: Text(isConvertingToSum ? currency['CcyNm_UZ'] : 'Soʻm'),
+                        child: Text(
+                            isConvertingToSum ? currency['CcyNm_UZ'] : 'Soʻm'),
                       ),
                       TextButton(
                         onPressed: () => Navigator.pop(context),
@@ -160,7 +162,17 @@ class _SuccessScreenState extends State<SuccessScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp(),));}, icon: Icon(Icons.exit_to_app))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyApp(),
+                    ));
+              },
+              icon: Icon(Icons.exit_to_app))
+        ],
         backgroundColor: Colors.blue,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,7 +189,8 @@ class _SuccessScreenState extends State<SuccessScreen> {
               itemBuilder: (context, index) {
                 final currency = currencies[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

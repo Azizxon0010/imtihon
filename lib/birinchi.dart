@@ -28,7 +28,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController loginController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  
 
   void _saveData() {
     if (loginController.text.isNotEmpty && passwordController.text.isNotEmpty) {
@@ -49,7 +48,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
-  Widget buildGlassTextField(String hint, TextEditingController controller, {bool isPassword = false}) {
+  Widget buildGlassTextField(String hint, TextEditingController controller,
+      {bool isPassword = false}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: BackdropFilter(
@@ -93,7 +93,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ro'yxatdan o'tish",style: TextStyle(color: Colors.white),),centerTitle: true,
+        title: Text(
+          "Ro'yxatdan o'tish",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -124,7 +128,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(height: 10),
                 buildGlassTextField("Login", loginController),
                 SizedBox(height: 10),
-                buildGlassTextField("Parol", passwordController, isPassword: true),
+                buildGlassTextField("Parol", passwordController,
+                    isPassword: true),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _saveData,
@@ -139,34 +144,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 }
 
-
-
 class LoginScreen extends StatelessWidget {
   final String savedLogin;
   final String savedPassword;
 
-  const LoginScreen({Key? key, required this.savedLogin, required this.savedPassword}) : super(key: key);
+  const LoginScreen(
+      {Key? key, required this.savedLogin, required this.savedPassword})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController loginController = TextEditingController(text: savedLogin);
-    final TextEditingController passwordController = TextEditingController(text: savedPassword);
+    final TextEditingController loginController =
+        TextEditingController(text: savedLogin);
+    final TextEditingController passwordController =
+        TextEditingController(text: savedPassword);
 
     return Scaffold(
       body: Stack(
         children: [
-          /// **Orqa fon gradient**
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, Colors.purple], // Gradient rangi
+                colors: [Colors.blue, Colors.purple],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
             ),
           ),
-
-          /// **Glassmorphism effekti**
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -177,8 +181,10 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    if (loginController.text == savedLogin && passwordController.text == savedPassword) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => uch()));
+                    if (loginController.text == savedLogin &&
+                        passwordController.text == savedPassword) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => uch()));
                     } else {
                       Navigator.pop(context);
                     }
@@ -193,8 +199,8 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  /// **Glassmorphism text field**
-  Widget glassTextField(String hint, TextEditingController controller, bool isPassword) {
+  Widget glassTextField(
+      String hint, TextEditingController controller, bool isPassword) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: BackdropFilter(
@@ -203,13 +209,13 @@ class LoginScreen extends StatelessWidget {
           width: 300,
           padding: EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2), // Shaffoflik
+            color: Colors.white.withOpacity(0.2),
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color: Colors.white.withOpacity(0.3)),
           ),
           child: TextField(
             controller: controller,
-            obscureText: isPassword, // Parol yashirish
+            obscureText: isPassword,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -222,6 +228,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-
-
